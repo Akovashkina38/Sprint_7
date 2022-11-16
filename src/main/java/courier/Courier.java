@@ -1,4 +1,4 @@
-package Courier;
+package courier;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -10,12 +10,12 @@ public class Courier {
 
     public Courier() {
     }
+
     public Courier(String login, String password, String firstName) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
     }
-
     public static Courier getRandomCourier() {
         final String courierLogin = RandomStringUtils.randomAlphabetic(10);
         final String courierPassword = RandomStringUtils.randomAlphabetic(10);
@@ -38,5 +38,4 @@ public class Courier {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

@@ -1,16 +1,13 @@
-package CourierTests;
+package courierTests;
 
+import courier.Courier;
+import courier.CourierClient;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 import io.qameta.allure.junit4.DisplayName;
-import io.qameta.allure.Description;
 import io.restassured.response.ValidatableResponse;
-import Courier.Courier;
-import Courier.CourierClient;
-
 import static org.hamcrest.CoreMatchers.*;
-
 
 public class CreatingCourierTest {
 
@@ -23,7 +20,6 @@ public class CreatingCourierTest {
         courierClient = new CourierClient();
         courier = Courier.getRandomCourier();
     }
-
     @After
     public void tearDown() {
         if (courierId != 0) {
@@ -72,5 +68,4 @@ public class CreatingCourierTest {
         ValidatableResponse createResponse = courierClient.createCourier(courier).statusCode(400);
         createResponse.assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
-
 }

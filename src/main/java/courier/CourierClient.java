@@ -1,6 +1,6 @@
-package Courier;
+package courier;
 
-import Client.Client;
+import client.Client;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
@@ -43,5 +43,4 @@ public class CourierClient extends Client {
                 .delete(COURIER_PATH + courierId)
                 .then();
     }
-
 }

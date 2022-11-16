@@ -1,6 +1,6 @@
-package OrderTests;
+package orderTests;
 
-import Order.OrderClient;
+import order.OrderClient;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
@@ -19,16 +19,15 @@ public class OrderListTest {
     public void setUp() {
         orderClient = new OrderClient();
     }
-
     @Test
     @DisplayName("Проверка, что в тело ответа возвращается список заказов.")
-    public void getOrderReturnedOrderList(){
-        ValidatableResponse responseOrderList= orderClient.returnOrderList();
+    public void getOrderReturnedOrderList() {
+        ValidatableResponse responseOrderList = orderClient.returnOrderList();
         ArrayList actualList = responseOrderList.extract().path("orders");
         int ordersSize = actualList.size();
         boolean actual = ordersSize > 0;
         int actualStatusCode = responseOrderList.extract().statusCode();
-        assertEquals("Status Code incorrect",SC_OK, actualStatusCode);
-        assertTrue( "Expected order list size more than 0", actual);
+        assertEquals("Status Code incorrect", SC_OK, actualStatusCode);
+        assertTrue("Expected order list size more than 0", actual);
     }
 }

@@ -1,13 +1,14 @@
-package CourierTests;
+package courierTests;
+
+import courier.Courier;
+import courier.CourierClient;
+import courier.CourierCredentials;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 import io.qameta.allure.junit4.DisplayName;
-import io.qameta.allure.Description;
 import io.restassured.response.ValidatableResponse;
-import Courier.Courier;
-import Courier.CourierClient;
-import Courier.CourierCredentials;
+
 
 import static org.hamcrest.CoreMatchers.*;
 public class LoginCourierTest {
@@ -24,7 +25,6 @@ public class LoginCourierTest {
         courierClient.createCourier(courier);
         courierCredentials = new CourierCredentials(courier.getLogin(), courier.getPassword());
     }
-
     @After
     public void tearDown() {
         courierClient.deleteCourier(courierId);

@@ -1,8 +1,8 @@
-package OrderTests;
+package orderTests;
 
-import Order.Order;
-import Order.OrderClient;
-import Order.OrderGenerator;
+import order.Order;
+import order.OrderClient;
+import order.OrderGenerator;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
@@ -25,9 +25,7 @@ public class OrderTest {
         this.order = order;
         this.statusCode = statusCode;
     }
-
-
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные[{index}] : Заказ {0}, StatusCode {1}")
     public static Object[][] getTestData() {
         return new Object[][]{
                 {OrderGenerator.getWithBlack(), SC_CREATED},
@@ -36,7 +34,6 @@ public class OrderTest {
                 {OrderGenerator.getWithoutColours(), SC_CREATED}
         };
     }
-
     @Before
     public void setUp() {
         orderClient = new OrderClient();
@@ -44,11 +41,11 @@ public class OrderTest {
 
     @Test
     @DisplayName("Проверка, что в теле ответа содержится track")
-    public void orderCanBeCreated(){
+    public void orderCanBeCreated() {
         ValidatableResponse responseCreate = orderClient.create(order);
         int actualStatusCode = responseCreate.extract().statusCode();
         int track = responseCreate.extract().path("track");
-        assertThat("Expected track number",track, notNullValue());
-        assertEquals("Status Code incorrect",statusCode,actualStatusCode);
+        assertThat("Expected track number", track, notNullValue());
+        assertEquals("Status Code incorrect", statusCode, actualStatusCode);
     }
 }
